@@ -2,6 +2,9 @@
 
 *A Pixi workspace for building publication-ready PDF scores of «Sierra Arn — Composizioni, Op. 1» from MuseScore sources.*
 
+> **Note:**  
+> If you only need the finished PDF scores and do not want to set up this workspace locally, download them from the [PDF release](https://github.com/Sierra-Arn/score-forge-opus-one/releases/tag/v2026.09.04). The MuseScore sources (`.mscz`) live in this repository under `composizioni/Op-1_No-*/`; see [Project Structure at a Glance](#project-structure-at-a-glance) and [Detailed Project Structure](docs/02-project-structure.md) for details.
+
 ## Project Structure at a Glance
 
 ```
