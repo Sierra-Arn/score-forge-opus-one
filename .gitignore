@@ -1,0 +1,12 @@
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+# python-generated files
+__pycache__/
+
+# generated score artifacts
+*.pdf
+
+# musescore backup files
+.mscbackup/

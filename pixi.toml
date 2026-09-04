@@ -1,0 +1,103 @@
+# ==================================================================================================
+
+[workspace]
+authors = ["Sierra-Arn <unweariedheart@gmail.com>"]
+name = "score-forge-opus-one"
+version = "0.1.0"
+license = "Apache-2.0 AND CC-BY-4.0"
+repository = "https://github.com/Sierra-Arn/score-forge-opus-one"
+
+channels = ["https://prefix.dev/conda-forge"]
+platforms = ["linux-64"]
+preview = ["pixi-build"]
+requires-pixi = ">=0.78.0"
+
+# ==================================================================================================
+
+[dependencies]
+musescore = { path = "./recipes/musescore" }
+scripts = { path = "./recipes/scripts" }
+
+# ==================================================================================================
+
+[tasks]
+paratext-no-1 = "typst-compile Op-1_No-1_Believe"
+merge-no-1 = "pdf-merge Op-1_No-1_Believe"
+release-no-1 = "write-pdf-metadata Op-1_No-1_Believe \"No. 1: Believe\""
+
+# --------------------------------------------------------------------------------------------------
+
+paratext-no-2 = "typst-compile Op-1_No-2_Silence"
+merge-no-2 = "pdf-merge Op-1_No-2_Silence"
+release-no-2 = "write-pdf-metadata Op-1_No-2_Silence \"No. 2: Silence\""
+
+# --------------------------------------------------------------------------------------------------
+
+paratext-no-3 = "typst-compile Op-1_No-3_Abyss"
+merge-no-3 = "pdf-merge Op-1_No-3_Abyss"
+release-no-3 = "write-pdf-metadata Op-1_No-3_Abyss \"No. 3: Abyss\""
+
+# --------------------------------------------------------------------------------------------------
+
+paratext-no-4 = "typst-compile Op-1_No-4_Through_Pain"
+merge-no-4 = "pdf-merge Op-1_No-4_Through_Pain"
+release-no-4 = "write-pdf-metadata Op-1_No-4_Through_Pain \"No. 4: Through Pain\""
+
+# --------------------------------------------------------------------------------------------------
+
+paratext-no-5 = "typst-compile Op-1_No-5_To-the-Beloved"
+merge-no-5 = "pdf-merge Op-1_No-5_To-the-Beloved"
+release-no-5 = "write-pdf-metadata Op-1_No-5_To-the-Beloved \"No. 5: To the Beloved\""
+
+# --------------------------------------------------------------------------------------------------
+
+paratext-no-6 = "typst-compile Op-1_No-6_Dreaming"
+merge-no-6 = "pdf-merge Op-1_No-6_Dreaming"
+release-no-6 = "write-pdf-metadata Op-1_No-6_Dreaming \"No. 6: Dreaming\""
+
+# --------------------------------------------------------------------------------------------------
+
+paratext-no-7 = "typst-compile Op-1_No-7_Solitude-and-Loneliness"
+merge-no-7 = "pdf-merge Op-1_No-7_Solitude-and-Loneliness"
+release-no-7 = "write-pdf-metadata Op-1_No-7_Solitude-and-Loneliness \"No. 7: Solitude and Loneliness\""
+
+# --------------------------------------------------------------------------------------------------
+
+[tasks.paratext-all]
+depends-on = [
+    "paratext-no-1",
+    "paratext-no-2",
+    "paratext-no-3",
+    "paratext-no-4",
+    "paratext-no-5",
+    "paratext-no-6",
+    "paratext-no-7",
+]
+
+# --------------------------------------------------------------------------------------------------
+
+[tasks.merge-all]
+depends-on = [
+    "merge-no-1",
+    "merge-no-2",
+    "merge-no-3",
+    "merge-no-4",
+    "merge-no-5",
+    "merge-no-6",
+    "merge-no-7",
+]
+
+# --------------------------------------------------------------------------------------------------
+
+[tasks.release-all]
+depends-on = [
+    "release-no-1",
+    "release-no-2",
+    "release-no-3",
+    "release-no-4",
+    "release-no-5",
+    "release-no-6",
+    "release-no-7",
+]
+
+# ==================================================================================================

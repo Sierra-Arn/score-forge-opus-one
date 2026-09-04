@@ -1,0 +1,43 @@
+# metadata.toml
+
+# Shared metadata for PDF scores of «Sierra Arn — Composizioni, Op. 1».
+# Read by `composizioni/paratext/lib.typ` and the `write-pdf-metadata` CLI.
+#
+# | Field                   | Consumer              | Output |
+# |-------------------------|-----------------------|--------|
+# | author.display_name     | lib.typ               | Title page; copyright page |
+# | author.display_name     | write-pdf-metadata    | release.pdf `dc:creator` |
+# | author.legal_name       | lib.typ               | Copyright page |
+# | author.email            | lib.typ               | Copyright page |
+# | work.collection         | lib.typ               | Title page |
+# | work.collection         | write-pdf-metadata    | release.pdf `dc:description` |
+# | date.year, month, day   | lib.typ               | Title page |
+# | date.year, month, day   | write-pdf-metadata    | release.pdf `dc:date` |
+# | date.year               | lib.typ               | Copyright page |
+# | license.name            | lib.typ               | Copyright page |
+# | license.designation     | lib.typ               | Copyright page |
+# | license.url             | lib.typ               | Copyright page (license link) |
+# | license.notice          | write-pdf-metadata    | release.pdf `dc:rights` |
+# | tools.musescore_creator | write-pdf-metadata    | release.pdf `xmp:CreatorTool` |
+
+[author]
+display_name = "Sierra Arn"
+legal_name = "Ilya Snegov"
+email = "unweariedheart@gmail.com"
+
+[work]
+collection = "Composizioni, Op. 1"
+
+[date]
+year = 2026
+month = 9
+day = 4
+
+[license]
+name = "Creative Commons Attribution 4.0 International License"
+designation = "CC BY 4.0"
+url = "https://creativecommons.org/licenses/by/4.0/"
+notice = "Copyright (c) 2026 Ilya Snegov (aka Sierra Arn). Licensed under CC BY 4.0."
+
+[tools]
+musescore_creator = "Sierra Arn (via MuseScore 3.7.0)"
