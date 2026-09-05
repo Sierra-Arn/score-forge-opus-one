@@ -88,6 +88,13 @@ With the environment activated, publication-ready PDF scores can be rebuilt in t
     For each piece under `composizioni/Op-1_No-*/`:
 
     1. Open `score.mscz`.
+
+        > **Note:**  
+        > Opening a score may print many FluidSynth lines of the form  
+        > `SoundFont(.../MuseScore_General.sf3) Sample(...) fowled (broken soundfont?), fixing up`  
+        > (often for pizzicato samples such as `BassPzz_*`, `CellPzz_*`, `ViolPzz_*`, `VlnsPzz_*`).  
+        > These messages are expected and can be ignored if MuseScore opens and plays back without crashing.
+
     2. Choose **File -> Export**.
     3. Set **Export to** to **PDF file**.
     4. Set the export options:
