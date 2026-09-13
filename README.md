@@ -97,7 +97,8 @@ With the environment activated, publication-ready PDF scores can be rebuilt in t
 
     2. Choose **File -> Export**.
     3. Set **Export to** to **PDF file**.
-    4. Set the export options:
+    4. In the **What to export** block, check **Full Score**.
+    5. In the **export options** block, set:
 
         | Setting | Value |
         |---|---|
@@ -105,7 +106,7 @@ With the environment activated, publication-ready PDF scores can be rebuilt in t
         | Background | **Export with background present in score** |
         | Export each score | **Combined into a single file** |
 
-    5. Save the output as `score.pdf` in the same piece directory.
+    6. Save the output as `score.pdf` in the same piece directory.
 
 3. **Close MuseScore**
 
