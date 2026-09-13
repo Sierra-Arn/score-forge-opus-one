@@ -19,6 +19,10 @@ from pathlib import Path
 from pikepdf import Pdf
 from scripts.paths import find_project_root, resolve_piece_path
 
+_PARATEXT_NAME = "paratext.pdf"
+_SCORE_NAME = "score.pdf"
+_MERGED_NAME = "merged.pdf"
+
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """
@@ -36,8 +40,8 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser(
         description=(
-            "Merge composizioni/<piece-dir>/paratext.pdf and score.pdf "
-            "into merged.pdf."
+            f"Merge composizioni/<piece-dir>/{_PARATEXT_NAME} and "
+            f"{_SCORE_NAME} into {_MERGED_NAME}."
         ),
     )
     parser.add_argument(
@@ -62,7 +66,7 @@ def merge_piece_pdfs(piece_dir: str) -> Path:
     Returns
     -------
     Path
-        Absolute path of the written merged.pdf.
+        Absolute path of the written merged PDF.
 
     Raises
     ------
@@ -73,14 +77,14 @@ def merge_piece_pdfs(piece_dir: str) -> Path:
     """
     project_root = find_project_root()
     piece_path = resolve_piece_path(piece_dir, project_root=project_root)
-    paratext_path = piece_path / "paratext.pdf"
-    score_path = piece_path / "score.pdf"
-    merged_path = piece_path / "merged.pdf"
+    paratext_path = piece_path / _PARATEXT_NAME
+    score_path = piece_path / _SCORE_NAME
+    merged_path = piece_path / _MERGED_NAME
 
     if not paratext_path.is_file():
-        raise FileNotFoundError(f"paratext.pdf not found: {paratext_path}")
+        raise FileNotFoundError(f"{_PARATEXT_NAME} not found: {paratext_path}")
     if not score_path.is_file():
-        raise FileNotFoundError(f"score.pdf not found: {score_path}")
+        raise FileNotFoundError(f"{_SCORE_NAME} not found: {score_path}")
 
     output = Pdf.new()
     version = output.pdf_version

@@ -20,6 +20,9 @@ from typing import Any
 from pikepdf import Pdf
 from scripts.paths import find_project_root, load_metadata, resolve_piece_path
 
+_SOURCE_NAME = "merged.pdf"
+_RELEASE_NAME = "release.pdf"
+
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """
@@ -37,9 +40,9 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser(
         description=(
-            "Tag composizioni/<piece-dir>/merged.pdf and write release.pdf "
-            "via pikepdf. Release fields other than title are read from "
-            "metadata.toml."
+            f"Tag composizioni/<piece-dir>/{_SOURCE_NAME} and write "
+            f"{_RELEASE_NAME} via pikepdf. Release fields other than title "
+            "are read from metadata.toml."
         ),
     )
     parser.add_argument(
@@ -155,7 +158,7 @@ def _format_publication_date(meta: dict[str, Any]) -> str:
 
 def write_release_pdf(piece_dir: str, title: str) -> Path:
     """
-    Copy merged.pdf into release.pdf with release metadata.
+    Copy the merged PDF into the release PDF with release metadata.
 
     Metadata other than title is taken from metadata.toml at the project root
     (dc:creator, dc:description, dc:date, dc:rights, xmp:CreatorTool). Existing
@@ -172,7 +175,7 @@ def write_release_pdf(piece_dir: str, title: str) -> Path:
     Returns
     -------
     Path
-        Absolute path of the written release.pdf.
+        Absolute path of the written release PDF.
 
     Raises
     ------
@@ -180,16 +183,16 @@ def write_release_pdf(piece_dir: str, title: str) -> Path:
         If piece_dir is not a bare directory name, or required metadata keys
         are missing.
     FileNotFoundError
-        If the project root, piece directory, merged.pdf, or metadata.toml is
+        If the project root, piece directory, source PDF, or metadata.toml is
         missing.
     """
     project_root = find_project_root()
     piece_path = resolve_piece_path(piece_dir, project_root=project_root)
-    merged_path = piece_path / "merged.pdf"
-    release_path = piece_path / "release.pdf"
+    merged_path = piece_path / _SOURCE_NAME
+    release_path = piece_path / _RELEASE_NAME
 
     if not merged_path.is_file():
-        raise FileNotFoundError(f"merged.pdf not found: {merged_path}")
+        raise FileNotFoundError(f"{_SOURCE_NAME} not found: {merged_path}")
 
     meta = load_metadata(project_root)
     author = _require_str(meta, ("author", "display_name"))

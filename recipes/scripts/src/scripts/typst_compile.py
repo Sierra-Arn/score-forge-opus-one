@@ -18,6 +18,9 @@ import subprocess
 import sys
 from scripts.paths import find_project_root, resolve_piece_path
 
+_INPUT_NAME = "paratext.typ"
+_OUTPUT_NAME = "paratext.pdf"
+
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """
@@ -35,7 +38,8 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser(
         description=(
-            "Compile composizioni/<piece-dir>/paratext.typ to paratext.pdf."
+            f"Compile composizioni/<piece-dir>/{_INPUT_NAME} to "
+            f"{_OUTPUT_NAME}."
         ),
     )
     parser.add_argument(
@@ -62,15 +66,16 @@ def compile_paratext(piece_dir: str) -> None:
     ValueError
         If piece_dir is not a bare directory name.
     FileNotFoundError
-        If the project root, piece directory, or paratext.typ is missing.
+        If the project root, piece directory, or input Typst file is missing.
     RuntimeError
         If the Typst process exits with a non-zero status.
     """
     project_root = find_project_root()
     piece_path = resolve_piece_path(piece_dir, project_root=project_root)
-    input_path = piece_path / "paratext.typ"
+    input_path = piece_path / _INPUT_NAME
+    output_path = piece_path / _OUTPUT_NAME
     if not input_path.is_file():
-        raise FileNotFoundError(f"paratext.typ not found: {input_path}")
+        raise FileNotFoundError(f"{_INPUT_NAME} not found: {input_path}")
 
     result = subprocess.run(
         [
@@ -79,6 +84,7 @@ def compile_paratext(piece_dir: str) -> None:
             "--root",
             str(project_root),
             str(input_path),
+            str(output_path),
         ],
         check=False,
     )
